@@ -1,0 +1,40 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+ "window":{
+    "navigationBarBackgroundColor": "#35495e",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "司傅驾到",
+    "backgroundColor": "#000000",
+    "backgroundTextStyle": "light", 
+     "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#000000",
+    "borderStyle": "white",
+    "backgroundColor": "#f5f5f5",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/shouye.png",
+        "selectedIconPath": "images/shouye_active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/renzheng.png",
+        "selectedIconPath": "images/renzheng_active.png",
+        "text": "认证"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/fenxiang.png",
+        "selectedIconPath": "images/fenxiang_active.png",
+        "text": "分享"
+      }
+    ]
+  }
+}
