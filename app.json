@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/register/index"
   ],
  "window":{
     "navigationBarBackgroundColor": "#35495e",
@@ -24,10 +25,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/register/index",
         "iconPath": "images/renzheng.png",
         "selectedIconPath": "images/renzheng_active.png",
-        "text": "认证"
+        "text": "注册"
       },
       {
         "pagePath": "pages/index/index",

@@ -1,0 +1,58 @@
+page{
+  font-size: 32rpx;
+  background-color: #f7f8fa;
+}
+.pickdate{
+  padding:7px 15px;
+  color:#495060;
+  position:relative;
+  padding:12px 15px;
+  display:flex;
+  background:#fff;
+  align-items:center;
+  line-height:1.4;
+  font-size:14px;
+  overflow:hidden;
+}
+.tipblock_msg{
+  background-color:white;
+  padding:1.2rem 0.65rem 0.8rem 0.65rem;
+ 
+}
+.tipblock_pic{
+  background-color:#f7f8fa;
+  padding:1.2rem 0.65rem 0.8rem 0.65rem;
+ 
+}
+.tipblock_title{
+  font-size: 1.36rem;
+}
+.tipblock_title_important{
+  color: #F7B45D
+}
+.i-input-title{
+  min-width: 5rem;
+}
+.img{
+  width: 100%;
+}
+.img_top{
+  margin: 0.4rem 0;
+}
+.car_ownMsg{
+  font-size: 1.25rem;
+}
+.input_margin{
+  margin:0.6rem 0;
+}
+.picker_margin{
+  margin:0.6rem 0 0 0;
+}
+.item_bc{
+  margin:0.4em 0.5em;
+  font-size:1rem;
+  
+}
+.icon_msg{
+  margin: 0.3rem;
+}
