@@ -20,39 +20,67 @@ page{
  
 }
 .tipblock_pic{
+  color:#1c2438;
   background-color:#f7f8fa;
   padding:1.2rem 0.65rem 0.8rem 0.65rem;
- 
+}
+.tipblock_picSecond{
+  background-color:white;
+  padding:1.2rem 0.65rem 0.8rem 0.65rem; 
 }
 .tipblock_title{
   font-size: 1.36rem;
 }
 .tipblock_title_important{
-  color: #F7B45D
+  color: #ff9900
 }
 .i-input-title{
   min-width: 5rem;
 }
 .img{
-  width: 100%;
-}
-.img_top{
-  margin: 0.4rem 0;
+  width: 95%;
+  margin-left:2.5%;
 }
 .car_ownMsg{
   font-size: 1.25rem;
 }
 .input_margin{
-  margin:0.6rem 0;
+  margin:0.59rem 0;
 }
 .picker_margin{
   margin:0.6rem 0 0 0;
 }
 .item_bc{
   margin:0.4em 0.5em;
-  font-size:1rem;
-  
+  font-size:34rpx; 
+  color: #495060; 
 }
 .icon_msg{
   margin: 0.3rem;
+}
+.uploadPic{
+  background-color: white;
+}
+.submitBtn{
+  background-color:#ff9900!important;
+  color:white;
+}
+.picker_city{
+  padding:1rem 0;
+  border-bottom:0.01rem solid #e9eaec;
+  border-bottom-width: 90%;
+  height:rem;
+  font-size:14px;
+  color:#495060;
+  padding-left:0.7rem;
+}
+.picker_data{
+  padding:0.5rem 0 1rem 0;
+  height:rem;
+  font-size:14px;
+  color:#495060;
+  padding-left:0.7rem;
+}
+.textTitle{
+  margin-right:1rem;
 }

@@ -6,6 +6,7 @@
     "i-cell": "../../dist/cell/index",
     "i-panel": "../../dist/panel/index",
     "i-icon": "../../dist/icon/index",
-    "i-switch": "../../dist/switch/index"
+    "i-switch": "../../dist/switch/index",
+    "i-button": "../../dist/button/index"
 }
 }
