@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/register/index"
+    "pages/register/index",
+    "pages/person/index"
   ],
  "window":{
     "navigationBarBackgroundColor": "#35495e",
@@ -31,10 +32,10 @@
         "text": "注册"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/person/index",
         "iconPath": "images/fenxiang.png",
         "selectedIconPath": "images/fenxiang_active.png",
-        "text": "分享"
+        "text": "我的"
       }
     ]
   }
