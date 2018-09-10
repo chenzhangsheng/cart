@@ -84,6 +84,10 @@
             <image class='img' wx:else bindtap='img_item' id='3' name='idcard_positive' src='{{tempFilePaths[3]}}'></image>        
         </view>
     </view>
-    <button formType="submit" class="submitBtn" loading="true">确认提交</button>
+    <button formType="submit" class="submitBtn">确认提交</button>
   </form>
+
+    <i-modal title="确认提交" visible="{{ visible5 }}" actions="{{ actions5 }}" bind:click="handle">
+      <view>提交后无法更改</view>
+  </i-modal>
 </view>

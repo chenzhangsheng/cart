@@ -2,6 +2,7 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
+    "pages/share/index",
     "pages/register/index"
   ],
  "window":{
@@ -31,7 +32,7 @@
         "text": "注册"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/share/index",
         "iconPath": "images/fenxiang.png",
         "selectedIconPath": "images/fenxiang_active.png",
         "text": "分享"

@@ -17,6 +17,17 @@ Page({
       date: '',
       date1: '',
       tempFilePaths: [],
+      actions5: [
+        {
+          name: '取消'
+        },
+        {
+          name: '提交',
+          color: '#ed3f14',
+          loading: false
+        }
+      ],
+      visible5: false
   },
   onShareAppMessage() {
     return {
@@ -67,12 +78,45 @@ Page({
       }
     })
   },
+  handle({ detail }) {
+    var that = this;
+    if (detail.index === 0) {
+      this.setData({
+        visible5: false
+      });
+    } else {
+      const action = [...this.data.actions5];
+      action[1].loading = true;
+      this.setData({
+        actions5: action
+      });
+      that.btn_up(that.data.tempFilePaths, 0)
+      wx.request({
+        method: 'POST',
+        url: `${app.globalData.API_URL}/app/updateCart`,
+        data: {
+          'openId': wx.getStorageSync('openId'),
+          'form_data': form_data,
+          'region': this.data.region,
+          'driverDate': this.data.driverDate,
+          'vehicleRegisteDate': this.data.vehicleRegisteDate
+        },
+        success: function (res) {
+        }
+      })
+    }
+  },
   formSubmit: function (e) {
     var that = this;
     form_data = e.detail.value;
+    // console.log(form_data);
+    // console.log(this.data.region);
+    // console.log(this.data.driverDate);
+    // console.log(this.data.vehicleRegisteDate);
+    // console.log(that.data.tempFilePaths);
     // 选择器的值需要手动塞入
-    console.log(form_data, this.data.region, this.data.driverDate,this.data.vehicleRegisteDate)
-    console.log( that.data.tempFilePaths, that.data.tempFilePaths.length );
+  //  console.log(form_data, this.data.region, this.data.driverDate,this.data.vehicleRegisteDate)
+ //   console.log( that.data.tempFilePaths, that.data.tempFilePaths.length );
     let isformFull =  Object.keys(form_data)
     .map(key => form_data[key])
     .every(item => {
@@ -80,38 +124,52 @@ Page({
     });
     if(isformFull){
       if(that.data.tempFilePaths.length===4){
-        for( let a = 0; a < that.data.tempFilePaths.length; a++){
-          console.log(that.data.tempFilePaths[a]);
-          console.log('调用上传的逻辑');
-          that.btn_up(that.data.tempFilePaths[a])
-        } 
+          this.setData({
+            visible5: true
+          });
       }else{
+        console.log("认证照片不完整")
         wx.showToast({
-          title: '请上传完整的认证照片',
+          title: '认证照片不完整',
         })
       }
-    } else {
+     }else {
       wx.showToast({
-        title: '请填写完整认证信息',
-      });
+        title: '填写完整信息',
+       });
     };
   },
-  btn_up: function (e) {
+  btn_up: function (e,i) {
     let that = this;
-    console.log(this,'btn_up', e)
-    //  拿到了四个本地的地址 请求上传图片的处理逻辑
-    wx.uploadFile({
-      url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-      filePath: e,
-      name: 'file',
-      formData:{
-        'user': 'test'
-      },
-      success: function(res){
-        var data = res.data
-        //do something
-      }
-    })
+    let openId = wx.getStorageSync('openId')
+    if(i > 3){
+      const action = [...this.data.actions5];
+      action[1].loading = false;
+      this.setData({
+        visible5: false,
+        actions5: action
+      });
+    }else{
+      wx.uploadFile({
+        url: `${app.globalData.API_URL}/app/upload`,
+        filePath: e[i],
+        name: 'file',
+        header: {
+          "Content-Type": "multipart/form-data"
+        },
+        formData: {
+          'openId': openId,
+          'id': i
+        },
+        success: function (res) {
+          let result = JSON.parse(JSON.parse(JSON.stringify(res)).data);
+          if (result.code == 200) {
+            i++;
+            that.btn_up(that.data.tempFilePaths, i)
+          }
+        }
+      })
+    }
   }
 
 });
