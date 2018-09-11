@@ -1,16 +1,25 @@
 <!--index.wxml-->
 <!-- <view class="container"> -->
-     <swiper style="height:500px;" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+     <swiper style="height:600px;" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
 
       <!-- <block wx:for="{{background}}" wx:key="*this">
           <swiper-item>
             <view class="swiper-item {{item}}"></view>
           </swiper-item>
         </block> -->
-       <block wx:for="{{imgUrls}}" wx:for-item="slide" wx:key="id">
+       <block>
         <swiper-item>
-           <image src="../../images/lunbo2.png" class="slide-image" width="355" height="150"/>
+           <image src="../../images/lunbo1.png" class="slide-image" style="width:100%;height:100%"/>
         </swiper-item>
+        <swiper-item>
+          <image src="../../images/lunbo2.png" class="slide-image" style="width:100%;height:100%"/>
+       </swiper-item>
+       <swiper-item>
+        <image src="../../images/lunbo3.png" class="slide-image" style="width:100%;height:100%"/>
+     </swiper-item>
+     <swiper-item>
+      <image src="../../images/lunbo4.png" class="slide-image" style="width:100%;height:100%"/>
+   </swiper-item>
       </block> 
     </swiper>
 <!-- </view> -->
