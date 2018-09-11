@@ -21,6 +21,8 @@ App({
               console.log("login result=" + res.data.code )
               if (res.data.code == 200) {
                 wx.setStorageSync('openId', res.data.data.openid)
+                console.log('sessionKey=' + res.data.data.session_key)
+                wx.setStorageSync('sessionKey', res.data.data.session_key)
               }
             }
           })
@@ -51,7 +53,7 @@ App({
   
   globalData: {
     userInfo: null,
-    API_URL: 'http://localhost:9090',
+    API_URL: 'https://didi.nbuxinxiren.cn',
   },
 
 })

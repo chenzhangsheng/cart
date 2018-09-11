@@ -1,5 +1,4 @@
-//index.js
-//获取应用实例
+
 const app = getApp()
 
 Page({
@@ -14,6 +13,11 @@ Page({
     wx.navigateTo({
       url: '../logs/logs'
     })
+  },
+  getPhoneNumber: function (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -47,18 +51,17 @@ Page({
   },
   onReady: function () {
     console.log("test1 onReady");
-
     const ctx = wx.createCanvasContext('shareCanvas')
     // 底图
-    ctx.drawImage('../../images/backg.jpg', 0, 0, 600, 900)
+    ctx.drawImage('../../images/backg.png', 0, 0, 400, 500)
     // 作者名称
     ctx.setTextAlign('center')    // 文字居中
     ctx.setFillStyle('#000000')  // 文字颜色：黑色
     ctx.setFontSize(22)         // 文字字号：22px
-    ctx.fillText('作者：张杰', 600 / 2, 500)
+    ctx.fillText('作者：张杰', 100 / 2, 200)
     // 小程序码
     const qrImgSize = 180
-    ctx.drawImage('../../images/ma.png', (600 - qrImgSize) / 2, 530, qrImgSize, qrImgSize)
+    ctx.drawImage('../../images/ma.png', (200 - qrImgSize) / 2, 300, qrImgSize, qrImgSize)
     ctx.stroke()
     ctx.draw()
 

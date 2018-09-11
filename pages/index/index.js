@@ -13,8 +13,7 @@ Page({
       '../../images/lunbo2.png',
       '../../images/lunbo3.png',
       '../../images/lunbo4.png'
-    ],
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3']
+    ]
   },
   //事件处理函数
   bindViewTap: function() {
