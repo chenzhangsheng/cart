@@ -53,15 +53,15 @@ Page({
     console.log("test1 onReady");
     const ctx = wx.createCanvasContext('shareCanvas')
     // 底图
-    ctx.drawImage('../../images/backg.png', 0, 0, 400, 500)
+    ctx.drawImage('../../images/backg.png', 0, 0, 415, 800)
     // 作者名称
-    ctx.setTextAlign('center')    // 文字居中
-    ctx.setFillStyle('#000000')  // 文字颜色：黑色
-    ctx.setFontSize(22)         // 文字字号：22px
-    ctx.fillText('作者：张杰', 100 / 2, 200)
+    // ctx.setTextAlign('center')    // 文字居中
+    // ctx.setFillStyle('#000000')  // 文字颜色：黑色
+    // ctx.setFontSize(22)         // 文字字号：22px
+    // ctx.fillText('作者：张杰', 100 / 2, 200)
     // 小程序码
     const qrImgSize = 180
-    ctx.drawImage('../../images/ma.png', (200 - qrImgSize) / 2, 300, qrImgSize, qrImgSize)
+    ctx.drawImage('../../images/ma.png', (415 - qrImgSize) / 2, 540, qrImgSize, qrImgSize)
     ctx.stroke()
     ctx.draw()
 
