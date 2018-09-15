@@ -8,6 +8,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     flag: true,
+    shareTextflag:false,
+    shareNum:100,
   },
   //事件处理函数
   // bindViewTap: function () {
@@ -53,7 +55,16 @@ Page({
 
   },
   onReady: function () {
-
+    this.drawpopPic()
+  },
+  getUserInfo: function (e) {
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+  drawpopPic:function(){
     let rpx;
     //获取屏幕宽度，获取自适应单位
     wx.getSystemInfo({
@@ -65,39 +76,17 @@ Page({
     // 小程序码
     const qrImgSize = 110
     // 底图
-    // ctx.drawImage('../../images/backg.png', 0, 0, 380*rpx, 600*rpx)
     ctx.drawImage('../../images/backg.png', 0, 0, 320*rpx, 590*rpx)
     // 作者名称
     ctx.setTextAlign('center')    // 文字居中
     ctx.setFillStyle('#000000')  // 文字颜色：黑色
     ctx.setFontSize(10)         // 文字字号：22px
     ctx.fillText('长按识别二维码', (430 - qrImgSize)*rpx / 2, 500*rpx)
-    // ctx.drawImage('../../images/ma.png', (380 - qrImgSize)*rpx / 2, 400*rpx, qrImgSize*rpx, qrImgSize*rpx)
     ctx.drawImage('../../images/ma.png', (320 - qrImgSize)*rpx / 2, 380*rpx, qrImgSize*rpx, qrImgSize*rpx)
     ctx.stroke()
     ctx.draw()
-
-    // setTimeout(function () {
-    //   wx.canvasToTempFilePath({
-    //     canvasId: 'shareCanvas',
-    //     success: function (res) {
-    //       console.log(res.tempFilePath)
-    //       wx.saveImageToPhotosAlbum({
-    //         filePath: res.tempFilePath
-    //       })
-    //     }
-    //   })
-    // }, 2000)
   },
-  getUserInfo: function (e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  showMask:function(){
-    this.setData({ flag: false })
+  savepopPic:function(){
     wx.canvasToTempFilePath({
       canvasId: 'shareCanvas',
       success: function (res) {
@@ -107,8 +96,13 @@ Page({
         })
       }
     })
+    this.setData({ shareTextflag: true })
+  },
+  showMask:function(){
+    setTimeout(this.savepopPic, 1000)
+    this.setData({ flag: false })
   },
   closeMask: function () {
-    this.setData({ flag: true })
+    this.setData({ flag: true, shareTextflag: false })
   },
 })

@@ -27,6 +27,7 @@
 .separate {
   height: 18rpx;
   background-color: #f2f2f2;
+  margin-top:12rpx;
 }
 
 .usermotto {
