@@ -79,21 +79,24 @@ Page({
     })
   },
   handle({ detail }) {
+    console.log("点击提交")
     var that = this;
     if (detail.index === 0) {
       this.setData({
         visible5: false
       });
     } else {
+      console.log("点击提交")
       const action = [...this.data.actions5];
       action[1].loading = true;
       this.setData({
         actions5: action
       });
-      that.btn_up(that.data.tempFilePaths, 0)
+      // that.btn_up(that.data.tempFilePaths, 0)
       wx.request({
         method: 'POST',
         url: `${app.globalData.API_URL}/app/updateCart`,
+        header: { 'Content-Type': 'application/json' },
         data: {
           'openId': wx.getStorageSync('openId'),
           'form_data': form_data,
@@ -102,6 +105,12 @@ Page({
           'vehicleRegisteDate': this.data.vehicleRegisteDate
         },
         success: function (res) {
+        if (result.data.code == 200){
+            that.setData({
+              visible5: false,
+              actions5: action
+            });
+          }
         }
       })
     }
@@ -122,7 +131,7 @@ Page({
     .every(item => {
       return item != '' ;
     });
-    if(isformFull){
+    // if(isformFull){
       if(that.data.tempFilePaths.length===4){
           this.setData({
             visible5: true
@@ -133,22 +142,22 @@ Page({
           title: '认证照片不完整',
         })
       }
-     }else {
-      wx.showToast({
-        title: '填写完整信息',
-       });
-    };
+    //  }else {
+    //   wx.showToast({
+    //     title: '填写完整信息',
+    //    });
+    // };
   },
   btn_up: function (e,i) {
     let that = this;
     let openId = wx.getStorageSync('openId')
     if(i > 3){
-      const action = [...this.data.actions5];
-      action[1].loading = false;
-      this.setData({
-        visible5: false,
-        actions5: action
-      });
+      // const action = [...this.data.actions5];
+      // action[1].loading = false;
+      // this.setData({
+      //   visible5: false,
+      //   actions5: action
+      // });
     }else{
       wx.uploadFile({
         url: `${app.globalData.API_URL}/app/upload`,
@@ -162,7 +171,9 @@ Page({
           'id': i
         },
         success: function (res) {
+         
           let result = JSON.parse(JSON.parse(JSON.stringify(res)).data);
+          console.log("上传图片结果=" + result.code)
           if (result.code == 200) {
             i++;
             that.btn_up(that.data.tempFilePaths, i)

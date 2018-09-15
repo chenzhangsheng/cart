@@ -51,39 +51,39 @@ Page({
   },
   onReady: function () {
 
-    let rpx;
-    //获取屏幕宽度，获取自适应单位
-    wx.getSystemInfo({
-      success: function(res) {
-        rpx = res.windowWidth/375;
-      },
-    })
-    console.log(rpx,"test1 onReady");
-    const ctx = wx.createCanvasContext('shareCanvas')
-    // 底图
-    ctx.drawImage('../../images/backg.png', 0, 0, 380*rpx, 600*rpx)
-    // 作者名称
-    // ctx.setTextAlign('center')    // 文字居中
-    // ctx.setFillStyle('#000000')  // 文字颜色：黑色
-    // ctx.setFontSize(22)         // 文字字号：22px
-    // ctx.fillText('作者：张杰', 100 / 2, 200)
-    // 小程序码
-    const qrImgSize = 158
-    ctx.drawImage('../../images/ma.png', (380 - qrImgSize)*rpx / 2, 400*rpx, qrImgSize*rpx, qrImgSize*rpx)
-    ctx.stroke()
-    ctx.draw()
+    // let rpx;
+    // //获取屏幕宽度，获取自适应单位
+    // wx.getSystemInfo({
+    //   success: function(res) {
+    //     rpx = res.windowWidth/375;
+    //   },
+    // })
+    // console.log(rpx,"test1 onReady");
+    // const ctx = wx.createCanvasContext('shareCanvas')
+    // // 底图
+    // ctx.drawImage('../../images/backg.png', 0, 0, 380*rpx, 600*rpx)
+    // // 作者名称
+    // // ctx.setTextAlign('center')    // 文字居中
+    // // ctx.setFillStyle('#000000')  // 文字颜色：黑色
+    // // ctx.setFontSize(22)         // 文字字号：22px
+    // // ctx.fillText('作者：张杰', 100 / 2, 200)
+    // // 小程序码
+    // const qrImgSize = 158
+    // ctx.drawImage('../../images/ma.png', (380 - qrImgSize)*rpx / 2, 400*rpx, qrImgSize*rpx, qrImgSize*rpx)
+    // ctx.stroke()
+    // ctx.draw()
 
-    setTimeout(function () {
-      wx.canvasToTempFilePath({
-        canvasId: 'shareCanvas',
-        success: function (res) {
-          console.log(res.tempFilePath)
-          wx.saveImageToPhotosAlbum({
-            filePath: res.tempFilePath
-          })
-        }
-      })
-    }, 2000)
+    // setTimeout(function () {
+    //   wx.canvasToTempFilePath({
+    //     canvasId: 'shareCanvas',
+    //     success: function (res) {
+    //       console.log(res.tempFilePath)
+    //       wx.saveImageToPhotosAlbum({
+    //         filePath: res.tempFilePath
+    //       })
+    //     }
+    //   })
+    // }, 2000)
   },
   getUserInfo: function (e) {
 

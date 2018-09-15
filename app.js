@@ -53,7 +53,7 @@ App({
   
   globalData: {
     userInfo: null,
-    API_URL: 'https://didi.nbuxinxiren.cn',
+    API_URL: 'http://localhost:9090',
   },
 
 })

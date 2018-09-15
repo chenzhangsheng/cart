@@ -1,11 +1,22 @@
 <!--index.wxml-->
+<view class="userinfo" style="height:180px;">
+ <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" style="margin-top:46px;"  bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+ <block wx:else>
+    <image style="margin-top:46px;" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <text class="userinfo-nickname">{{baye_rank ? baye_rank : ''}}</text>
+   </block>
+</view>
+<view class="separate"></view>
+
 <view class="container">
-  <view class="userinfo">
+
+   <view class="userinfo">
      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 获取手机号 </button>
-    <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> </button>  -->
-  </view>
-  <view class="usermotto">
+  </view> 
+
+  <!-- <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
-  </view>
-  <canvas canvas-id="shareCanvas" style="width:800px;height:750px"></canvas>
+  </view> -->
+  <canvas canvas-id="shareCanvas" style="width:800px;height:650px"></canvas>
 </view>
