@@ -27,8 +27,16 @@ Page({
           loading: false
         }
       ],
-      visible5: false
+      visible5: false,
+      showFlag: true,
   },
+  // onLoad: function () {
+  //   var that = this
+  //   var userInfo = wx.getStorageSync('userInfo')
+  //   if (userInfo.cartIdNumber){
+  //     console.log("显示审核中")
+  //   }
+  // },
   onShareAppMessage() {
     return {
       title: '司机师傅',
@@ -79,20 +87,18 @@ Page({
     })
   },
   handle({ detail }) {
-    console.log("点击提交")
     var that = this;
     if (detail.index === 0) {
       this.setData({
         visible5: false
       });
     } else {
-      console.log("点击提交")
       const action = [...this.data.actions5];
       action[1].loading = true;
       this.setData({
         actions5: action
       });
-      // that.btn_up(that.data.tempFilePaths, 0)
+      that.btn_up(that.data.tempFilePaths, 0)
       wx.request({
         method: 'POST',
         url: `${app.globalData.API_URL}/app/updateCart`,
@@ -105,12 +111,6 @@ Page({
           'vehicleRegisteDate': this.data.vehicleRegisteDate
         },
         success: function (res) {
-        if (result.data.code == 200){
-            that.setData({
-              visible5: false,
-              actions5: action
-            });
-          }
         }
       })
     }
@@ -118,20 +118,12 @@ Page({
   formSubmit: function (e) {
     var that = this;
     form_data = e.detail.value;
-    // console.log(form_data);
-    // console.log(this.data.region);
-    // console.log(this.data.driverDate);
-    // console.log(this.data.vehicleRegisteDate);
-    // console.log(that.data.tempFilePaths);
-    // 选择器的值需要手动塞入
-  //  console.log(form_data, this.data.region, this.data.driverDate,this.data.vehicleRegisteDate)
- //   console.log( that.data.tempFilePaths, that.data.tempFilePaths.length );
     let isformFull =  Object.keys(form_data)
     .map(key => form_data[key])
     .every(item => {
       return item != '' ;
     });
-    // if(isformFull){
+    if(isformFull){
       if(that.data.tempFilePaths.length===4){
           this.setData({
             visible5: true
@@ -142,22 +134,22 @@ Page({
           title: '认证照片不完整',
         })
       }
-    //  }else {
-    //   wx.showToast({
-    //     title: '填写完整信息',
-    //    });
-    // };
+     }else {
+      wx.showToast({
+        title: '填写完整信息',
+       });
+    };
   },
   btn_up: function (e,i) {
     let that = this;
     let openId = wx.getStorageSync('openId')
     if(i > 3){
-      // const action = [...this.data.actions5];
-      // action[1].loading = false;
-      // this.setData({
-      //   visible5: false,
-      //   actions5: action
-      // });
+      const action = [...this.data.actions5];
+      action[1].loading = false;
+      that.setData({
+        visible5: false,
+        actions5: action
+      });
     }else{
       wx.uploadFile({
         url: `${app.globalData.API_URL}/app/upload`,
@@ -171,7 +163,6 @@ Page({
           'id': i
         },
         success: function (res) {
-         
           let result = JSON.parse(JSON.parse(JSON.stringify(res)).data);
           console.log("上传图片结果=" + result.code)
           if (result.code == 200) {

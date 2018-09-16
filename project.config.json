@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.94",
-	"appid": "wxeb78b3b925ff9dd8",
-	"projectname": "%E5%B8%88%E5%82%85%E9%A9%BE%E5%88%B0-git-1",
+	"appid": "wxa13bb45d82a8eca0",
+	"projectname": "shifujiadao-2",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -43,6 +43,13 @@
 					"name": "分享页面",
 					"pathName": "pages/share/index",
 					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "二维码",
+					"pathName": "pages/index/index",
+					"query": "scene=oo_4M5GxAVrVMmpoNsMZ4ywBYP6c",
+					"scene": "1012"
 				}
 			]
 		}

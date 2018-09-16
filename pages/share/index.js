@@ -10,6 +10,8 @@ Page({
     flag: true,
     shareTextflag:false,
     shareNum:100,
+    qrCodeUrl:"",
+    shareCount: 0,
   },
   //事件处理函数
   // bindViewTap: function () {
@@ -18,13 +20,61 @@ Page({
   //   })
   // },
   getPhoneNumber: function (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-    this.showMask()
-    
+    var that = this;
+    var userInfo = wx.getStorageSync('userInfo')
+    console.log(userInfo.wxPhone + ":" + userInfo.qrcodeUrl)
+    if (userInfo.wxPhone){
+      that.setData({
+        qrCodeUrl: userInfo.qrcodeUrl,
+      })
+      that.drawpopPic()
+      setTimeout(this.showMask, 2000)
+    }else{
+      wx.request({
+        method: 'POST',
+        url: `${app.globalData.API_URL}/app/getphone`,
+        header: { 'Content-Type': 'application/json' },
+        data: {
+          'openId': wx.getStorageSync('openId'),
+          'encryptedData': e.detail.encryptedData,
+          'iv': e.detail.iv,
+          'sessionKey': wx.getStorageSync('sessionKey')
+        },
+        success: function (res) {
+          let result = JSON.parse(JSON.stringify(res)).data;
+          console.log(result.data)
+          if (result.code == 200) {
+            that.setData({
+              qrCodeUrl: result.data,
+            })
+            that.drawpopPic()
+            setTimeout(this.showMask, 2000)
+          }
+        },
+        fail: function (res) {
+          console.log(JSON.stringify(res))
+        }
+      })
+    }
   },
   onLoad: function () {
+    var that = this 
+    wx.request({
+      method: 'POST',
+      url: `${app.globalData.API_URL}/app/getCount`,
+      header: { 'Content-Type': 'application/json' },
+      data: {
+        'openId': wx.getStorageSync('openId'),
+      },
+      success: function (res) {
+        let result = JSON.parse(JSON.stringify(res)).data;
+        if (result.code == 200) {
+          that.setData({
+            shareCount: result.data
+          });
+        }
+      }
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -55,7 +105,6 @@ Page({
 
   },
   onReady: function () {
-    this.drawpopPic()
   },
   getUserInfo: function (e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -65,6 +114,7 @@ Page({
     })
   },
   drawpopPic:function(){
+    var that = this 
     let rpx;
     //获取屏幕宽度，获取自适应单位
     wx.getSystemInfo({
@@ -82,7 +132,8 @@ Page({
     ctx.setFillStyle('#000000')  // 文字颜色：黑色
     ctx.setFontSize(10)         // 文字字号：22px
     ctx.fillText('长按识别二维码', (430 - qrImgSize)*rpx / 2, 500*rpx)
-    ctx.drawImage('../../images/ma.png', (320 - qrImgSize)*rpx / 2, 380*rpx, qrImgSize*rpx, qrImgSize*rpx)
+    console.log("qrCodeUrl=" + that.data.qrCodeUrl)
+    ctx.drawImage(that.data.qrCodeUrl, (320 - qrImgSize)*rpx / 2, 380*rpx, qrImgSize*rpx, qrImgSize*rpx)
     ctx.stroke()
     ctx.draw()
   },
@@ -99,10 +150,11 @@ Page({
     this.setData({ shareTextflag: true })
   },
   showMask:function(){
-    setTimeout(this.savepopPic, 1000)
-    this.setData({ flag: false })
+    var that = this;
+    that.setData({ flag: false })
   },
   closeMask: function () {
-    this.setData({ flag: true, shareTextflag: false })
+    var that = this;
+    that.setData({ flag: true, shareTextflag: false })
   },
 })
