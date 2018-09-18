@@ -21,7 +21,22 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    var scene = decodeURIComponent(options.scene)
+    console.log("scene=" + scene)
+    if (scene != 'undefined'){
+      wx.request({
+        method: 'POST',
+        url: `${app.globalData.API_URL}/app/updateCount`,
+        header: { 'Content-Type': 'application/json' },
+        data: {
+          'openId': scene
+        },
+        success: function (res) {
+
+        }
+      })
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

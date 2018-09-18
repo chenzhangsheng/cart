@@ -1,4 +1,4 @@
-<view>
+<view wx:if="{{showFlag}}">
   <form  bindsubmit="formSubmit" bindreset="formReset">
     <view class='tipblock_msg'>
         <view class="tipblock_title">您需要填写认证信息</view>

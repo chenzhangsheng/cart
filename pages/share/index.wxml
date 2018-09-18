@@ -10,7 +10,7 @@
     <i-collapse name="{{name}}">
         <i-collapse-item style="font-size: 32rpx;border-top:1px solid white;" title="我的分享" name="name1">
             <view slot="content">
-                分享的人数:{{shareNum}}
+                分享的人数:{{shareCount}}
             </view>
         </i-collapse-item>
     </i-collapse>

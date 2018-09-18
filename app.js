@@ -6,10 +6,11 @@ App({
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
     // 登录
-    console.log("wx.getStorageSync('openId')=" + (wx.getStorageSync('openId') == ""))
-    if (wx.getStorageSync('openId') == "") { // 第一次登录
+    console.log("wx.getStorageSync="+ wx.getStorageSync('openId'))
+    // if (wx.getStorageSync('openId') == "") { // 第一次登录
        wx.login({
         success: res => {
+          console.log("wx.code=" + res.code)
           wx.setStorageSync('code', res.code)
           wx.request({
             method: 'POST',
@@ -20,15 +21,16 @@ App({
             success: function (res) {
               console.log("login result=" + res.data.code )
               if (res.data.code == 200) {
-                wx.setStorageSync('openId', res.data.data.openid)
-                console.log('sessionKey=' + res.data.data.session_key)
-                wx.setStorageSync('sessionKey', res.data.data.session_key)
+                wx.setStorageSync('openId', res.data.data.wxId)
+                console.log('sessionKey=' + res.data.data.sessionKey.session_key)
+                wx.setStorageSync('sessionKey', res.data.data.sessionKey.session_key)
+                wx.setStorageSync('userInfo', res.data.data)
               }
             }
           })
         }
       })
-    }
+    // }
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -53,7 +55,8 @@ App({
   
   globalData: {
     userInfo: null,
-    API_URL: 'http://localhost:9090',
+   // API_URL: 'http://localhost:9090',
+   API_URL: 'https://didi.nbuxinxiren.cn'
   },
 
 })

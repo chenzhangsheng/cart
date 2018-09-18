@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -43,6 +43,13 @@
 					"name": "分享页面",
 					"pathName": "pages/share/index",
 					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "二维码",
+					"pathName": "pages/index/index",
+					"query": "scene=oo_4M5GxAVrVMmpoNsMZ4ywBYP6c",
+					"scene": "1012"
 				}
 			]
 		}
