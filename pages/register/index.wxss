@@ -62,8 +62,14 @@ page{
   background-color: white;
 }
 .submitBtn{
-  background-color:#ff9900!important;
+  background-color:#2db7f5;
   color:white;
+  width: 95%;
+  border-radius: 5rpx;
+  font-size: 28rpx;
+  height: 2.8rem;
+  line-height:2.8rem;
+  margin-bottom: 1rem;
 }
 .picker_city{
   padding:1rem 0;

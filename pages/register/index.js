@@ -112,16 +112,19 @@ Page({
           'vehicleRegisteDate': this.data.vehicleRegisteDate
         },
         success: function (res) {
-          console.log(res)
+          // if (getCurrentPages().length != 0) {
+          //   //刷新当前页面的数据
+          //   getCurrentPages()[getCurrentPages().length - 1].onLoad()
+          // }
           wx.showToast({
             title: '提交成功',
             icon: 'succes',
             duration: 1000,
             mask:true
           })
-          wx.switchTab({
-            url: '/pages/share/index'
-          })
+          // wx.switchTab({
+          //   url: '/pages/share/index'
+          // })
         }
       })
     }

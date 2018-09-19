@@ -4,8 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 25rpx;
-  background: linear-gradient(to bottom, white 0%, white 100%);
+  /* padding-bottom: 25rpx; */
+  background:#2db7f5;
+  /* background: linear-gradient(to bottom, white 0%, white 100%); */
 }
 
 .userinfo-avatar {
@@ -13,13 +14,12 @@
   height: 150rpx;
   border-radius: 50%;
   margin-top: 20rpx;
-  margin-bottom: 25rpx;
-  box-shadow:0px 0px 12px gray;
+  margin-bottom: 10rpx;
+  box-shadow:0px 0px 15px white;
 }
 
-
 .userinfo-nickname {
-  color: #272727;
+  color:white;
   font-size: 28rpx;
   line-height: 40rpx;
 }
@@ -27,9 +27,13 @@
 .separate {
   height: 18rpx;
   background-color: #f2f2f2;
-  margin-top:12rpx;
+  margin-bottom:20rpx;
 }
-
+.separate-middle{
+  height: 18rpx;
+  background-color: #f2f2f2;
+  margin-top:18rpx;
+}
 .usermotto {
   margin-top: 200px;
 }

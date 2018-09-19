@@ -6,7 +6,7 @@
     "pages/register/index"
   ],
  "window":{
-    "navigationBarBackgroundColor": "#35495e",
+    "navigationBarBackgroundColor": "#2db7f5",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "司傅驾到",
     "backgroundColor": "#000000",

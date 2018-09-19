@@ -1,22 +1,29 @@
 <!--index.wxml-->
-<view class="userinfo" style="height:190px;">
-    <image style="margin-top:46px;" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+<view class="userinfo" style="height:180px;">
+    <image style="margin-top:1.1rem;" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     <text class="userinfo-nickname">{{baye_rank ? baye_rank : ''}}</text>
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"  bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <i-button type="ghost" size="small" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"  bindgetuserinfo="getUserInfo"> 获取头像昵称 </i-button>
 </view>
+<view class="separate"></view>
 <view class="container">
-  <view class="caption-wrap">
-    <i-collapse name="{{name}}">
-        <i-collapse-item style="font-size: 32rpx;border-top:1px solid white;" title="我的分享" name="name1">
-            <view slot="content">
-                分享的人数:{{shareCount}}
+  <i-card title="二维码" extra="你的专属二维码" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+      <view slot="content">二维码可以分享给其他司机师傅，让他们加入我们的大家族，点击“生成二维码”按钮保存至相册即可进行分享哦！</view>
+      <view slot="footer">
+          <view class="caption-wrap">
+              <i-collapse name="{{name}}">
+                  <i-collapse-item style="font-size: 32rpx;border-top:1px solid white;" title="我的分享" name="name1">
+                      <view slot="content">
+                          分享的人数:{{shareCount}}
+                      </view>
+                  </i-collapse-item>
+              </i-collapse>
             </view>
-        </i-collapse-item>
-    </i-collapse>
-  </view>
-  <view class="separate"></view>
-  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="background-color:#35495e!important;color:white">生成二维码</button>
+      </view>
+  </i-card>
+  <view class="separate-middle"></view>
+  <i-button type="info" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">生成二维码</i-button>
+  <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="background-color:#35495e!important;color:white">生成二维码</button> -->
   <view class="b1" hidden="{{flag}}">
       <view class="b2">
         <canvas canvas-id="shareCanvas" style="width:100%;height:100%"></canvas>
