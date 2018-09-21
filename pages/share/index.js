@@ -12,6 +12,7 @@ Page({
     shareNum:100,
     qrCodeUrl:"",
     shareCount: 0,
+    loading: false,
   },
   //事件处理函数
   // bindViewTap: function () {
@@ -21,6 +22,7 @@ Page({
   // },
   getPhoneNumber: function (e) {
     var that = this;
+    that.setData({ loading: true })
     var userInfo = wx.getStorageSync('userInfo')
     console.log(userInfo.wxPhone + ":" + userInfo.qrcodeUrl)
     if (userInfo.wxPhone){
@@ -163,6 +165,7 @@ Page({
                     filePath: res.tempFilePath
                   })
                   that.setData({ shareTextflag: true })
+                
                 }
               })
             }
@@ -175,6 +178,7 @@ Page({
     var that = this;
     that.savepopPic()
     that.setData({ flag: false })
+    that.setData({ loading: false })
   },
   closeMask: function () {
     var that = this;

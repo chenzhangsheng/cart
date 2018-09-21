@@ -22,7 +22,7 @@
       </view>
   </i-card>
   <view class="separate-middle"></view>
-  <i-button type="info" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">生成二维码</i-button>
+  <i-button type="info" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" loading="{{loading}}">生成二维码</i-button>
   <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" style="background-color:#35495e!important;color:white">生成二维码</button> -->
   <view class="b1" hidden="{{flag}}">
       <view class="b2">
