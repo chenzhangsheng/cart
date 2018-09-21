@@ -122,35 +122,58 @@ Page({
         rpx = res.windowWidth/375;
       },
     })
-    const ctx = wx.createCanvasContext('shareCanvas')
-    // 小程序码
-    const qrImgSize = 110
-    // 底图
-    ctx.drawImage('../../images/backg.png', 0, 0, 320*rpx, 590*rpx)
-    // 作者名称
-    ctx.setTextAlign('center')    // 文字居中
-    ctx.setFillStyle('#000000')  // 文字颜色：黑色
-    ctx.setFontSize(10)         // 文字字号：22px
-    ctx.fillText('长按识别二维码', (430 - qrImgSize)*rpx / 2, 500*rpx)
-    console.log("qrCodeUrl=" + that.data.qrCodeUrl)
-    ctx.drawImage(that.data.qrCodeUrl, (320 - qrImgSize)*rpx / 2, 380*rpx, qrImgSize*rpx, qrImgSize*rpx)
-    ctx.stroke()
-    ctx.draw()
+
+    wx.getImageInfo({
+      src: that.data.qrCodeUrl,//服务器返回的带参数的小程序码地址
+      success: function (res) {
+        //res.path是网络图片的本地地址
+        let qrCodePath = res.path;
+        that.setData({
+          localImageUrl: qrCodePath
+        })
+        const ctx = wx.createCanvasContext('shareCanvas')
+        // 小程序码
+        const qrImgSize = 110
+        // 底图
+        ctx.drawImage('../../images/backg.png', 0, 0, 320 * rpx, 590 * rpx)
+        // 作者名称
+        ctx.setTextAlign('center')    // 文字居中
+        ctx.setFillStyle('#000000')  // 文字颜色：黑色
+        ctx.setFontSize(10)         // 文字字号：22px
+        ctx.fillText('长按识别二维码', (430 - qrImgSize) * rpx / 2, 500 * rpx)
+        console.log("qrCodeUrl=" + that.data.qrCodeUrl)
+        ctx.drawImage(that.data.localImageUrl, (320 - qrImgSize) * rpx / 2, 380 * rpx, qrImgSize * rpx, qrImgSize * rpx)
+        ctx.stroke()
+        ctx.draw()
+      },
+    });
   },
   savepopPic:function(){
-    wx.canvasToTempFilePath({
-      canvasId: 'shareCanvas',
-      success: function (res) {
-        console.log(res.tempFilePath,'保存到相册')
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath
-        })
+    var that = this 
+    wx.getSetting({
+      success(res) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              wx.canvasToTempFilePath({
+                canvasId: 'shareCanvas',
+                success: function (res) {
+                  console.log(res.tempFilePath, '保存到相册')
+                  wx.saveImageToPhotosAlbum({
+                    filePath: res.tempFilePath
+                  })
+                  that.setData({ shareTextflag: true })
+                }
+              })
+            }
+          })
       }
     })
-    this.setData({ shareTextflag: true })
+   
   },
   showMask:function(){
     var that = this;
+    that.savepopPic()
     that.setData({ flag: false })
   },
   closeMask: function () {
