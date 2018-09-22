@@ -7,7 +7,7 @@
 </view>
 <view class="separate"></view>
 <view class="container">
-  <i-card title="二维码" extra="你的专属二维码" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+  <i-card title="二维码" extra="你的专属二维码" thumb="../../images/qrcode.jpg">
       <view slot="content">二维码可以分享给其他司机师傅，让他们加入我们的大家族，点击“生成二维码”按钮保存至相册即可进行分享哦！</view>
       <view slot="footer">
           <view class="caption-wrap">

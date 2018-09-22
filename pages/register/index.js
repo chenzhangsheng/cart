@@ -116,12 +116,7 @@ Page({
           //   //刷新当前页面的数据
           //   getCurrentPages()[getCurrentPages().length - 1].onLoad()
           // }
-          wx.showToast({
-            title: '提交成功',
-            icon: 'succes',
-            duration: 1000,
-            mask:true
-          })
+          
           // wx.switchTab({
           //   url: '/pages/share/index'
           // })
@@ -164,6 +159,12 @@ Page({
         visible5: false,
         actions5: action
       });
+      wx.showToast({
+        title: '提交成功',
+        icon: 'succes',
+        duration: 1000,
+        mask:true
+      })
     }else{
       wx.uploadFile({
         url: `${app.globalData.API_URL}/app/upload`,

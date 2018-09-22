@@ -21,6 +21,10 @@ Page({
   //   })
   // },
   getPhoneNumber: function (e) {
+    console.log(e,99999999)
+    if(e.detail.errMsg!='getPhoneNumber:ok'){
+      return;
+    }
     var that = this;
     that.setData({ loading: true })
     var userInfo = wx.getStorageSync('userInfo')
