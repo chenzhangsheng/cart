@@ -68,18 +68,22 @@
         </view>
      <view class="uploadPic">
         <view>
+            <text class="tip_msg">驾驶证主页:</text>
             <image class='img' wx:if="{{!tempFilePaths[0]}}" bindtap='img_item' id='0' name='driver_license' src='../../images/driving_01.png'></image>
             <image class='img' wx:else bindtap='img_item' id='0' name='idcard_positive' src='{{tempFilePaths[0]}}'></image>
         </view>  
         <view>
+            <text class="tip_msg">驾驶证副页:</text>
             <image class='img' wx:if="{{!tempFilePaths[1]}}" bindtap='img_item' id='1' name='driver_license' src='../../images/driving_02.png'></image>
             <image class='img' wx:else bindtap='img_item' id='1' name='idcard_positive' src='{{tempFilePaths[1]}}'></image>
         </view>
         <view>
+            <text class="tip_msg">行驶证主页:</text>
             <image class='img' wx:if="{{!tempFilePaths[2]}}" bindtap='img_item' id='2' name='driving_this' src='../../images/driver_01.png'></image>
             <image class='img' wx:else bindtap='img_item' id='2' name='idcard_positive' src='{{tempFilePaths[2]}}'></image>        
         </view>
         <view>
+            <text class="tip_msg">行驶证副页:</text>
             <image class='img' wx:if="{{!tempFilePaths[3]}}" bindtap='img_item' id='3' name='driving_this' src='../../images/driver_02.png'></image>
             <image class='img' wx:else bindtap='img_item' id='3' name='idcard_positive' src='{{tempFilePaths[3]}}'></image>        
         </view>

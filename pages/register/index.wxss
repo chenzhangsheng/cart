@@ -90,3 +90,6 @@ page{
 .textTitle{
   margin-right:1rem;
 }
+.tip_msg{
+  margin: 0.8rem;
+}
